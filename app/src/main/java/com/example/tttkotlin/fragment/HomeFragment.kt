@@ -1,21 +1,22 @@
 package com.example.tttkotlin.fragment
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.tttkotlin.R
-import com.example.tttkotlin.activity.BodyActivity
 import com.example.tttkotlin.activity.LoginActivity
 import com.example.tttkotlin.adapter.TabAdapter
 import com.example.tttkotlin.api.RetrofitInstance
 import com.example.tttkotlin.model.DanhMuc
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -27,7 +28,6 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
     lateinit var listDanhMuc : ArrayList<DanhMuc>
     lateinit var tabLayout : TabLayout
-    lateinit var tvHoten : TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,6 +35,11 @@ class HomeFragment : Fragment() {
         tabLayout = root.findViewById(R.id.tabLayout)
         listDanhMuc = arrayListOf()
         loadTabLayout()
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
+        val navigationView = root.findViewById(R.id.nav_view) as NavigationView
+        val headerView = navigationView.getHeaderView(0)
+        val navUsername:TextView = headerView.findViewById<View>(R.id.tvHoTenNa_Header) as TextView
+        navUsername.setText(sharedPreferences.getString("email", "username"))
         root.iconToolbar.setOnClickListener(View.OnClickListener {
             drawerlayout.toggleMenu()
         })
@@ -72,6 +77,7 @@ class HomeFragment : Fragment() {
                 R.id.DX -> {
 
                     //Toast.makeText(requireContext(), "Đăng xuất!", Toast.LENGTH_SHORT).show()
+
                     val intent = Intent(context, LoginActivity::class.java)
                     requireActivity().startActivity(intent)
                     true
@@ -83,11 +89,11 @@ class HomeFragment : Fragment() {
         return root
     }
     fun loadTabLayout(){
-        RetrofitInstance.instance.getListNameDanhMuc().enqueue(object : Callback<ArrayList<DanhMuc>>{
+        RetrofitInstance.instance.getListNameDanhMuc().enqueue(object : Callback<ArrayList<DanhMuc>> {
             override fun onResponse(call: Call<ArrayList<DanhMuc>>, response: Response<ArrayList<DanhMuc>>) {
                 response.body()?.let {
                     listDanhMuc.addAll(it)
-                    for (i in 0..listDanhMuc.size-1){
+                    for (i in 0..listDanhMuc.size - 1) {
                         tabLayout.addTab(tabLayout.newTab().setText(listDanhMuc.get(i).getName()))
                     }
                     tabLayout.tabGravity = TabLayout.GRAVITY_FILL
@@ -155,10 +161,10 @@ class HomeFragment : Fragment() {
 //            })
 //        }
 //    }
-    fun AppCompatActivity.replaceFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_layout, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
+//    fun AppCompatActivity.replaceFragment(fragment: Fragment){
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.main_layout, fragment)
+//            .addToBackStack(null)
+//            .commit()
+//    }
 }

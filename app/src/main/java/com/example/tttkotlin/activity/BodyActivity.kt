@@ -39,11 +39,21 @@ class BodyActivity : AppCompatActivity() {
         id_post?.let{
             loadBodyMauTin(it)
         }
-        rtbDGBody.setOnRatingBarChangeListener(object : RatingBar.OnRatingBarChangeListener {
-            override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
-                Toast.makeText(applicationContext,"Đánh giá "+ rtbDGBody.getRating().toString()+" sao", Toast.LENGTH_SHORT).show()
-            }
-        })
+//        rtbDGBody.setOnRatingBarChangeListener(object : RatingBar.OnRatingBarChangeListener {
+//            override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
+////                RetrofitInstance.instance.danhGiaBaiViet(rtbDGBody.getRating()).enqueue(object : Callback<ArrayList<MauTin>>{
+////                    override fun onResponse(call: Call<ArrayList<MauTin>>, response: Response<ArrayList<MauTin>>) {
+//                        Toast.makeText(applicationContext,"Đánh giá "+ rtbDGBody.getRating().toString()+" sao thành công!", Toast.LENGTH_SHORT).show()
+////                    }
+////
+////                    override fun onFailure(call: Call<ArrayList<MauTin>>, t: Throwable) {
+////                        Toast.makeText(applicationContext,"Đánh giá thất bại: "+ t, Toast.LENGTH_SHORT).show()
+////                    }
+////
+////                })
+//
+//            }
+//        })
     }
     fun loadBodyMauTin(id_post : String){
         RetrofitInstance.instance.getMauTin(id_post).enqueue(object : Callback<ArrayList<MauTin>>{
@@ -53,7 +63,7 @@ class BodyActivity : AppCompatActivity() {
                     tvNoiDungBody.setText(it.get(0).getNoiDung())
                     tvNgayTaoBody.setText((it.get(0).getSoPhut()).substring(0, 16))
                     imgHinhAnhBody.load(it.get(0).getHinhAnh())
-                    rtbDGBody.setRating(it.get(0).getDanhGia().toFloat());
+                    //rtbDGBody.setRating(it.get(0).getDanhGia().toFloat());
                     tvTacGiaBody.setText(it.get(0).getNguoiTao())
                 }
             }

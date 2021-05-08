@@ -1,10 +1,14 @@
 package com.example.tttkotlin.activity
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.InputType
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.widget.Toast
-import coil.api.load
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tttkotlin.R
 import com.example.tttkotlin.api.RetrofitInstance
 import com.example.tttkotlin.model.Login
@@ -14,11 +18,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class LoginActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        checkShowPass.setOnClickListener{
+            if(checkShowPass.isChecked)    {
+                edtPassLogin.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            } else {
 
+                edtPassLogin.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+        }
         cvDNLogin.setOnClickListener {
             val email = edtEmailLogin.text.toString().trim()
             val pass = edtPassLogin.text.toString().trim()
@@ -33,16 +47,24 @@ class LoginActivity : AppCompatActivity() {
                 edtPassLogin.requestFocus()
                 return@setOnClickListener
             }
-            RetrofitInstance.instance.userLogin(email, pass).enqueue(object : Callback<Login>{
+
+
+            RetrofitInstance.instance.userLogin(email, pass).enqueue(object : Callback<Login> {
                 override fun onResponse(call: Call<Login>, response: Response<Login>) {
-                    if(response.body()?.getAccessToken().equals("")){
+                    val sharedPreferences: SharedPreferences = getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
+                    var editor = sharedPreferences.edit()
+                    if (!response.body()?.getAccessToken().equals("")) {
+                            editor.apply {
+                                editor.putString("email", email)
+                                editor.putString("token", response.body()?.getAccessToken())
+                            }.apply()
+                            editor.commit()
+                            Toast.makeText(applicationContext, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        //intent.putExtra("email_user", email)
+                        startActivity(intent)
+                    } else {
                         Toast.makeText(applicationContext, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show()
-                    }
-                    else{
-                        Toast.makeText(applicationContext,"Đăng nhập thành công!" , Toast.LENGTH_SHORT).show()
-//                        val intent = Intent(applicationContext, MainActivity::class.java)
-//                        intent.putExtra("access_token", response.body()?.getAccessToken())
-//                        startActivity(intent)
                     }
                 }
 
@@ -53,4 +75,5 @@ class LoginActivity : AppCompatActivity() {
             })
         }
     }
+
 }

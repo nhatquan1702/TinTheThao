@@ -58,8 +58,13 @@ class MauTinAdapter(var context : Context, var listMauTin:ArrayList<MauTin>): Ba
         var diffHours :Long = diff / (60 * 60 * 1000)
         var ngay :Long = diff / (60 * 60 * 1000*24)
         var thang :Long = diff / (60 * 60 * 1000*24*30)
+        if(thang<0){
+            thang=thang*(-1)
+        }
         var nam :Long = diff / (60 * 60 * 1000*24*30*12)
-
+        if(nam<0){
+            nam=nam*(-1)
+        }
         var tvTime : TextView = viewMauTin.findViewById(R.id.txtTime)
 
         if(diffSeconds<60){
@@ -68,9 +73,6 @@ class MauTinAdapter(var context : Context, var listMauTin:ArrayList<MauTin>): Ba
         if(diffSeconds>60&&diffMinutes<60){
             tvTime.setText(diffMinutes.toString() +" phút trước")
         }
-        if(diffMinutes>60 && diffHours<60){
-            tvTime.setText(diffHours.toString() +" giờ trước")
-        }
         if(diffMinutes>60 && diffHours<24){
             tvTime.setText(diffHours.toString() +" giờ trước")
         }
@@ -78,7 +80,7 @@ class MauTinAdapter(var context : Context, var listMauTin:ArrayList<MauTin>): Ba
             tvTime.setText(ngay.toString() +" ngày trước")
         }
         if(ngay>30 && thang<12){
-            tvTime.setText(thang.toString() +" ngày trước")
+            tvTime.setText(thang.toString() +" tháng trước")
         }
         if(thang>12&&nam<100){
             tvTime.setText(nam.toString() +" năm trước")

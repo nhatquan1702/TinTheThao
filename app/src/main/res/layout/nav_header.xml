@@ -12,19 +12,32 @@
         android:layout_height="60dp"
         android:layout_marginTop="80dp"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_person"
+        android:src="@drawable/deappool"
         android:layout_centerVertical="true"
         android:id="@+id/imgAVT"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvHoTen"
+        android:id="@+id/tvHoTenNa_Header"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/imgAVT"
         android:layout_centerVertical="true"
-        android:text="Username"
+        android:text="username"
         android:textSize="15sp"
         android:textColor="#fff"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnHeaderLogin"
+        android:layout_width="100dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/tvHoTenNa_Header"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/imgAVT"
+        android:text="Đăng nhập"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_login_bg_header"
+        android:textSize="12sp"
         />
 </RelativeLayout>
