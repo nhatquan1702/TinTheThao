@@ -1,28 +1,43 @@
 package com.example.tttkotlin.activity
 
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.database.sqlite.SQLiteDatabase.create
+import android.os.Build
 import android.os.Bundle
-import android.text.InputType
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.View
+import android.view.animation.AnimationUtils
+import java.util.Objects;
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.util.Pair.create
 import com.example.tttkotlin.R
 import com.example.tttkotlin.api.RetrofitInstance
 import com.example.tttkotlin.model.Login
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.checkShowPass
+import kotlinx.android.synthetic.main.activity_login.cvDNLogin
+import kotlinx.android.synthetic.main.activity_login.edtEmailLogin
+import kotlinx.android.synthetic.main.activity_login.edtPassLogin
+import kotlinx.android.synthetic.main.activity_login_new.*
 import kotlinx.android.synthetic.main.nav_header.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.URI.create
 
 
 class LoginActivity : AppCompatActivity() {
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_login_new)
         checkShowPass.setOnClickListener{
             if(checkShowPass.isChecked)    {
                 edtPassLogin.transformationMethod = HideReturnsTransformationMethod.getInstance()
@@ -48,29 +63,55 @@ class LoginActivity : AppCompatActivity() {
 
             RetrofitInstance.instance.userLogin(email, pass).enqueue(object : Callback<Login> {
                 override fun onResponse(call: Call<Login>, response: Response<Login>) {
-                    val sharedPreferences: SharedPreferences = getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
+                    val sharedPreferences: SharedPreferences = getSharedPreferences(
+                        "dataLogin",
+                        Context.MODE_PRIVATE
+                    )
                     var editor = sharedPreferences.edit()
                     if (!response.body()?.getAccessToken().equals("")) {
-                            editor.apply {
-                                putString("email", email)
-                                putString("token", response.body()?.getAccessToken())
-                                putString("pass", pass)
-                            }.apply()
-                            editor.commit()
-                            Toast.makeText(applicationContext, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show()
+                        editor.apply {
+                            putString("email", email)
+                            putString("token", response.body()?.getAccessToken())
+                            putString("pass", pass)
+                        }.apply()
+                        editor.commit()
+                        Toast.makeText(
+                            applicationContext,
+                            "Đăng nhập thành công!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         //intent.putExtra("email_user", email)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(applicationContext, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "Đăng nhập thất bại!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
                 override fun onFailure(call: Call<Login>, t: Throwable) {
-                    Toast.makeText(applicationContext, "Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext,
+                        "Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             })
         }
+
+        imgbtnDKTK.setOnClickListener {
+            val intent = Intent(applicationContext, DangKyTKActivity::class.java)
+            startActivity(intent)
+        }
+        tvDKTKNew.setOnClickListener {
+            val intent = Intent(applicationContext, DangKyTKActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
 }

@@ -37,7 +37,7 @@
                     android:id="@+id/CD"
                     />
                 <item
-                    android:title="Đăng nhập"
+                    android:title="Điều khoản sử dụng"
                     android:icon="@drawable/right"
                     android:id="@+id/DX"
                     />

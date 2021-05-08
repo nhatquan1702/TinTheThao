@@ -79,7 +79,6 @@
             app:itemTextAppearance="@style/TextViewStyle"
             app:itemHorizontalPadding="40dp">
         </com.google.android.material.navigation.NavigationView>
-
     </com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>
 
 </com.mxn.soul.flowingdrawer_core.FlowingDrawer>

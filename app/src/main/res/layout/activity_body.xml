@@ -15,9 +15,9 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
                 <LinearLayout
                     android:id="@+id/lnBody"
                     android:layout_width="match_parent"
@@ -64,6 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:paddingBottom="20dp"
                     android:layout_marginTop="5sp">
                     <TextView
                         android:layout_height="wrap_content"
@@ -83,14 +84,11 @@
                         android:layout_width="wrap_content"
                         android:drawableStart="@drawable/pen"
                         android:layout_marginLeft="80dp"
-                        android:text=" tác giả"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="italic"
                         />
                 </LinearLayout>
-
-
             </LinearLayout>
     </ScrollView>
 </FrameLayout>

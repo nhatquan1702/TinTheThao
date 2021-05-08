@@ -7,29 +7,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.example.tttkotlin.R
 import com.example.tttkotlin.adapter.TabAdapter
-import com.example.tttkotlin.api.RetrofitInstance
 import com.example.tttkotlin.fragment.BoiLoiFragment
 import com.example.tttkotlin.fragment.BongChuyenFragment
 import com.example.tttkotlin.fragment.BongDaFragment
-import com.example.tttkotlin.fragment.HomeFragment
 import com.example.tttkotlin.model.DanhMuc
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.drawerlayout
-import kotlinx.android.synthetic.main.fragment_home.iconToolbar
-import kotlinx.android.synthetic.main.fragment_home.nav_view
-import kotlinx.android.synthetic.main.fragment_home.view.*
-import kotlinx.android.synthetic.main.fragment_home.viewPager
 import kotlinx.android.synthetic.main.nav_header.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity(){
@@ -85,36 +73,27 @@ class MainActivity : AppCompatActivity(){
                     true
                 }
                 R.id.CS -> {
-
                     Toast.makeText(applicationContext, "Chia sẻ!", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.GY -> {
-
                     Toast.makeText(applicationContext, "Góp ý!", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.CD -> {
-
                     Toast.makeText(applicationContext, "Cài đặt!", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.HT -> {
-
                     Toast.makeText(applicationContext, "Hỗ trợ!", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.DGUD -> {
-
                     Toast.makeText(applicationContext, "Đánh giá ứng dụng!", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.DX -> {
-
-                    //Toast.makeText(requireContext(), "Đăng xuất!", Toast.LENGTH_SHORT).show()
-
-                    val intent = Intent(applicationContext, LoginActivity::class.java)
-                    startActivity(intent)
+                    Toast.makeText(applicationContext, "Điều khoản sử dụng!", Toast.LENGTH_SHORT).show()
                     true
 
                 }
