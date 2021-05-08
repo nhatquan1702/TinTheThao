@@ -38,7 +38,9 @@ class MauTinAdapter(var context : Context, var listMauTin:ArrayList<MauTin>): Ba
         val mautin : MauTin = getItem(position) as MauTin
 
         var imgV : ImageView = viewMauTin.findViewById(R.id.img)
-        imgV.load(mautin.getHinhAnh())
+        imgV.load(mautin.getHinhAnh()){
+            placeholder(android.R.drawable.ic_menu_gallery)
+        }
 
         var tvT : TextView = viewMauTin.findViewById(R.id.txtTittle)
         tvT.setText(mautin.getTieuDe())

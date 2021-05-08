@@ -4,12 +4,14 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.RatingBar
 import android.widget.Toast
 import coil.api.load
 import com.example.tttkotlin.R
 import com.example.tttkotlin.api.RetrofitInstance
 import com.example.tttkotlin.model.MauTin
+import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.android.synthetic.main.activity_body.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -35,9 +37,11 @@ class BodyActivity : AppCompatActivity() {
         val id_post : String? = intent.getStringExtra("id_post")
         //val a: String = "https://apisimpleappp.herokuapp.com/post/" + id_post
         //ReadJSON().execute(url)
-        Log.d("dfds", id_post.toString())
+   //     Log.d("dfds", id_post.toString())
         id_post?.let{
+
             loadBodyMauTin(it)
+
         }
 //        rtbDGBody.setOnRatingBarChangeListener(object : RatingBar.OnRatingBarChangeListener {
 //            override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
@@ -65,6 +69,10 @@ class BodyActivity : AppCompatActivity() {
                     imgHinhAnhBody.load(it.get(0).getHinhAnh())
                     //rtbDGBody.setRating(it.get(0).getDanhGia().toFloat());
                     tvTacGiaBody.setText(it.get(0).getNguoiTao())
+                    //shimmerFrame.apply {
+//                        stopShimmer()
+//                        visibility = View.GONE
+    //                }
                 }
             }
 
@@ -74,6 +82,11 @@ class BodyActivity : AppCompatActivity() {
 
         })
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//        shimmerFrame.startShimmer()
+//    }
 
 //    inner class ReadJSON : AsyncTask<String, Void, String>() {
 //        override fun doInBackground(vararg params: String?): String {

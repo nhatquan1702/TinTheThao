@@ -12,33 +12,48 @@ import com.example.tttkotlin.activity.BodyActivity
 import com.example.tttkotlin.model.MauTin
 import com.example.tttkotlin.adapter.MauTinAdapter
 import com.example.tttkotlin.api.RetrofitInstance
+import kotlinx.android.synthetic.main.fragment_bong_chuyen.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class BongChuyenFragment : Fragment() {
     lateinit var listMauTin:ArrayList<MauTin>
-    lateinit var listView: ListView
-
+    lateinit var viewBongChuyen:View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
-        val root : View = inflater.inflate(R.layout.fragment_bong_chuyen, container, false)
+        savedInstanceState: Bundle?): View {
+        viewBongChuyen  = inflater.inflate(R.layout.fragment_bong_chuyen, container, false)
         listMauTin = arrayListOf()
-        listView = root.findViewById(R.id.listViewMauTinBC)
         loadListView()
-        return root
+        return viewBongChuyen
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewBongChuyen.shimmerFrame.startShimmer()
     }
     fun loadListView(){
         RetrofitInstance.instance.getListMauTin2().enqueue(object:Callback<ArrayList<MauTin>>{
             override fun onResponse(call: Call<ArrayList<MauTin>>, response: Response<ArrayList<MauTin>>) {
                 response.body()?.let { bao->
                     listMauTin.addAll(bao)
-                    var adapterMauTin = MauTinAdapter(requireContext(), listMauTin)
-                    listView.adapter = adapterMauTin
-                    listView.setOnItemClickListener { parent, view, position, id ->
-                        showChiTietPost(listMauTin.get(position).getIdMauTin().toString())
+                    val adapterMauTin = MauTinAdapter(requireContext(), listMauTin)
+
+                    viewBongChuyen.apply {
+                        listViewMauTinBC.apply {
+                            adapter = adapterMauTin
+                            setOnItemClickListener { parent, view, position, id ->
+                                showChiTietPost(listMauTin.get(position).getIdMauTin().toString())
+                            }
+                        }
+                        shimmerFrame.apply {
+                            stopShimmer()
+                            visibility = View.GONE
+                        }
+
                     }
+
                 }
             }
 

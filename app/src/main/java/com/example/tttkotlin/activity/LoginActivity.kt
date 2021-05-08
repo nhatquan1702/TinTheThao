@@ -20,8 +20,6 @@ import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -29,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
             if(checkShowPass.isChecked)    {
                 edtPassLogin.transformationMethod = HideReturnsTransformationMethod.getInstance()
             } else {
-
                 edtPassLogin.transformationMethod = PasswordTransformationMethod.getInstance()
             }
         }
@@ -55,8 +52,9 @@ class LoginActivity : AppCompatActivity() {
                     var editor = sharedPreferences.edit()
                     if (!response.body()?.getAccessToken().equals("")) {
                             editor.apply {
-                                editor.putString("email", email)
-                                editor.putString("token", response.body()?.getAccessToken())
+                                putString("email", email)
+                                putString("token", response.body()?.getAccessToken())
+                                putString("pass", pass)
                             }.apply()
                             editor.commit()
                             Toast.makeText(applicationContext, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show()
@@ -75,5 +73,4 @@ class LoginActivity : AppCompatActivity() {
             })
         }
     }
-
 }

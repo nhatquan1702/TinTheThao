@@ -18,6 +18,7 @@ import com.example.tttkotlin.api.RetrofitInstance
 import com.example.tttkotlin.model.DanhMuc
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import retrofit2.Call
@@ -93,21 +94,16 @@ class HomeFragment : Fragment() {
             override fun onResponse(call: Call<ArrayList<DanhMuc>>, response: Response<ArrayList<DanhMuc>>) {
                 response.body()?.let {
                     listDanhMuc.addAll(it)
-                    for (i in 0..listDanhMuc.size - 1) {
-                        tabLayout.addTab(tabLayout.newTab().setText(listDanhMuc.get(i).getName()))
-                    }
                     tabLayout.tabGravity = TabLayout.GRAVITY_FILL
-                    val tabadapter = TabAdapter(requireContext(), childFragmentManager, tabLayout.tabCount)
+                    val tabadapter = activity?.let { it1 -> TabAdapter(it1, mutableListOf(BongDaFragment(),BoiLoiFragment(),BongDaFragment())) }
                     viewPager.adapter = tabadapter
-                    viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
-                    tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                        override fun onTabSelected(tab: TabLayout.Tab) {
-                            viewPager.currentItem = tab.position
+                    TabLayoutMediator(tabLayout,viewPager,{ tab,pos->
+                        when(pos){
+                            0-> tab.text = "Bóng đá"
+                            1->tab.text="Bơi lội"
+                            2->tab.text="Bóng chuyền"
                         }
-
-                        override fun onTabUnselected(tab: TabLayout.Tab) {}
-                        override fun onTabReselected(tab: TabLayout.Tab) {}
-                    })
+                    }).attach()
                 }
             }
 

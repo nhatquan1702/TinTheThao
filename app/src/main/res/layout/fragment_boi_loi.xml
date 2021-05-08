@@ -5,8 +5,31 @@
     android:layout_height="match_parent"
     tools:context=".fragment.BoiLoiFragment"
     android:background="#fff">
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical"
+            android:id="@+id/shimmerFrame">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/abc" />
 
-    <!-- TODO: Update blank fragment layout -->
+                <include layout="@layout/abcd" />
+
+                <include layout="@layout/abcd" />
+
+                <include layout="@layout/abcd" />
+
+                <include layout="@layout/abcd" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+     TODO: Update blank fragment layout
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

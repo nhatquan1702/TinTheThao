@@ -1,90 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:id="@+id/SCROLLER_ID"
-    android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    android:fillViewport="true"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginEnd="10dp">
-        <LinearLayout
-            android:id="@+id/lnBody"
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-            <ImageView
-                android:id="@+id/imgHinhAnhBody"
+    android:layout_width="match_parent">
+
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        >
+
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:orientation="vertical"
                 android:layout_height="match_parent"
-                android:background="@drawable/img_bg"
-                android:layout_marginTop="5dp"/>
-        </LinearLayout>
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+                <LinearLayout
+                    android:id="@+id/lnBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+                    <ImageView
+                        android:id="@+id/imgHinhAnhBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/img_bg"
+                        android:layout_marginTop="5dp"/>
+                </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/tvTieuDeBody"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_below="@+id/lnBody"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvTieuDeBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:layout_below="@+id/lnBody"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
 
-        <TextView
-            android:id="@+id/tvNgayTaoBody"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTieuDeBody"
-            android:drawableStart="@drawable/clock"
-            android:textColor="@color/black"
-            />
+                <TextView
+                    android:id="@+id/tvNgayTaoBody"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvTieuDeBody"
+                    android:drawableStart="@drawable/clock"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:id="@+id/tvNoiDungBody"
+                    android:layout_below="@+id/tvNgayTaoBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5sp">
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvView"
+                        android:layout_marginLeft="12dp"
+                        android:layout_width="wrap_content"
+                        android:drawableStart="@drawable/ic_view"
+                        android:paddingStart="5dp"
+                        android:text="20 lượt xem"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        />
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvTacGiaBody"
+                        android:layout_width="wrap_content"
+                        android:drawableStart="@drawable/pen"
+                        android:layout_marginLeft="80dp"
+                        android:text=" tác giả"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        />
+                </LinearLayout>
 
 
-
-
-        <TextView
-            android:id="@+id/tvNoiDungBody"
-            android:layout_below="@+id/tvNgayTaoBody"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black" />
-
-
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:id="@+id/tvView"
-            android:layout_marginLeft="12dp"
-            android:layout_width="wrap_content"
-            android:drawableStart="@drawable/ic_view"
-            android:paddingStart="5dp"
-            android:layout_below="@+id/tvNoiDungBody"
-            android:text="20 lượt xem"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="italic"
-            android:layout_marginBottom="10dp"
-            />
-        <TextView
-            android:layout_height="wrap_content"
-            android:id="@+id/tvTacGiaBody"
-            android:layout_toRightOf="@+id/tvView"
-            android:layout_below="@+id/tvNoiDungBody"
-            android:layout_width="wrap_content"
-            android:drawableStart="@drawable/pen"
-            android:layout_marginLeft="80dp"
-            android:text=" tác giả"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="italic"
-            android:layout_marginBottom="10dp"
-            />
-    </RelativeLayout>
-</ScrollView>
+            </LinearLayout>
+    </ScrollView>
+</FrameLayout>

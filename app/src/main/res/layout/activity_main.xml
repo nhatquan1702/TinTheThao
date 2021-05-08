@@ -18,6 +18,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -41,17 +42,10 @@
                 />
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/linearHomeSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 android:layout_marginBottom="1dp"
                 android:background="@drawable/tab_bg"
                 app:tabBackground="@drawable/tab_selected_bg"
@@ -59,13 +53,11 @@
                 app:tabRippleColor="@null">
             </com.google.android.material.tabs.TabLayout>
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp" />
-
-        </LinearLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp" />
     </LinearLayout>
 
     <!--menu-->

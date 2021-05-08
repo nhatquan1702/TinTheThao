@@ -58,30 +58,15 @@
         app:passwordToggleTint="#FFEA00"
         app:passwordToggleEnabled="true"
         />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edtPassLogin"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:text="Nhớ tài khoản"
-            android:textColor="@color/white" />
-
         <CheckBox
             android:id="@+id/checkShowPass"
             android:text="Hiện mật khẩu"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="0dp"
+            android:layout_below="@+id/edtPassLogin"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="200dp"
@@ -118,13 +103,4 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         />
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvDKLogin"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
 </RelativeLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+    android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+        <LinearLayout
+            android:id="@+id/lnBody"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <ImageView
+                android:id="@+id/imgHinhAnhBody"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#DAD7D7"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvTieuDeBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/lnBody"
+            android:background="#DAD7D7"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tvNgayTaoBody"
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTieuDeBody"
+            android:background="#DAD7D7"
+            />
+
+
+
+
+        <TextView
+            android:id="@+id/tvNoiDungBody"
+            android:layout_below="@+id/tvNgayTaoBody"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#DAD7D7"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTacGiaBody"
+            android:layout_toRightOf="@+id/tvView"
+            android:layout_below="@+id/tvNoiDungBody"
+            android:layout_width="300dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#DAD7D7"
+            android:layout_marginBottom="10dp"
+            />
+
+</LinearLayout>

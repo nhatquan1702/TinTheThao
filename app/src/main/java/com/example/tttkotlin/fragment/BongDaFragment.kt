@@ -12,6 +12,8 @@ import com.example.tttkotlin.activity.BodyActivity
 import com.example.tttkotlin.adapter.MauTinAdapter
 import com.example.tttkotlin.model.MauTin
 import com.example.tttkotlin.api.RetrofitInstance
+import kotlinx.android.synthetic.main.fragment_bong_da.*
+import kotlinx.android.synthetic.main.fragment_bong_da.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +21,7 @@ import retrofit2.Response
 class BongDaFragment : Fragment() {
     lateinit var listMauTin:ArrayList<MauTin>
     lateinit var listView:ListView
+    lateinit var viewBongDaFragment:View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,22 +29,28 @@ class BongDaFragment : Fragment() {
         // Inflate the layout for this fragment
 //        val url : String = "https://apisimpleappp.herokuapp.com/post?state=id_category=2,status=1&fields=id_post,title,img,create_time&limit=14&sort=create_time,desc"
 //        ReadJSON().execute(url)
-        val view =  inflater.inflate(R.layout.fragment_bong_da, container, false)
+        viewBongDaFragment =  inflater.inflate(R.layout.fragment_bong_da, container, false)
         listMauTin = arrayListOf()
-        listView = view.findViewById(R.id.listViewMauTinBD)
         loadListView()
-
-        return view
+        return viewBongDaFragment
     }
     fun loadListView(){
         RetrofitInstance.instance.getListMauTin1().enqueue(object : Callback<ArrayList<MauTin>>{
             override fun onResponse(call: Call<ArrayList<MauTin>>, response: Response<ArrayList<MauTin>>) {
                 response.body()?.let { list ->
                     listMauTin.addAll(list)
-                    var adapterMauTin = MauTinAdapter(requireContext(), listMauTin)
-                    listView.adapter = adapterMauTin
-                    listView.setOnItemClickListener { parent, view, position, id ->
-                        showChiTietPost(listMauTin.get(position).getIdMauTin().toString())
+                    val adapterMauTin = MauTinAdapter(requireContext(), listMauTin)
+                    viewBongDaFragment.apply {
+                        listViewMauTinBD.apply {
+                            adapter = adapterMauTin
+                            setOnItemClickListener { parent, view, position, id ->
+                                showChiTietPost(listMauTin.get(position).getIdMauTin().toString())
+                            }
+                        }
+                        shimmerFrame.apply {
+                            stopShimmer()
+                            visibility = View.GONE
+                        }
                     }
                 }
             }
@@ -51,6 +60,11 @@ class BongDaFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewBongDaFragment.shimmerFrame.startShimmer()
     }
 //    inner class ReadJSON : AsyncTask<String, Void, String>() {
 //        override fun doInBackground(vararg params: String?): String {

@@ -5,21 +5,27 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.tttkotlin.R
 import com.example.tttkotlin.adapter.TabAdapter
 import com.example.tttkotlin.api.RetrofitInstance
+import com.example.tttkotlin.fragment.BoiLoiFragment
+import com.example.tttkotlin.fragment.BongChuyenFragment
+import com.example.tttkotlin.fragment.BongDaFragment
 import com.example.tttkotlin.fragment.HomeFragment
 import com.example.tttkotlin.model.DanhMuc
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.drawerlayout
+import kotlinx.android.synthetic.main.fragment_home.iconToolbar
+import kotlinx.android.synthetic.main.fragment_home.nav_view
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_home.viewPager
 import kotlinx.android.synthetic.main.nav_header.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -117,38 +123,16 @@ class MainActivity : AppCompatActivity(){
         }
     }
     fun loadTabLayout(){
-        RetrofitInstance.instance.getListNameDanhMuc().enqueue(object : Callback<ArrayList<DanhMuc>> {
-            override fun onResponse(call: Call<ArrayList<DanhMuc>>, response: Response<ArrayList<DanhMuc>>) {
-                response.body()?.let {
-                    listDanhMuc.addAll(it)
-                    for (i in 0..listDanhMuc.size - 1) {
-                        tabLayout.addTab(tabLayout.newTab().setText(listDanhMuc.get(i).getName()))
-                    }
-                    tabLayout.tabGravity = TabLayout.GRAVITY_FILL
-                    val tabadapter = TabAdapter(applicationContext, supportFragmentManager, tabLayout.tabCount)
-                    viewPager.adapter = tabadapter
-                    viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
-                    tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                        override fun onTabSelected(tab: TabLayout.Tab) {
-                            viewPager.currentItem = tab.position
-                        }
-
-                        override fun onTabUnselected(tab: TabLayout.Tab) {}
-                        override fun onTabReselected(tab: TabLayout.Tab) {}
-                    })
-                }
+        val tabadapter = TabAdapter(this@MainActivity, mutableListOf(BongChuyenFragment(), BoiLoiFragment(), BongDaFragment()))
+        viewPager.adapter = tabadapter
+        TabLayoutMediator(tabLayout,viewPager,{ tab,pos->
+            when(pos){
+                0-> tab.text = "Bóng chuyền"
+                1->tab.text="Bơi lội"
+                2->tab.text="Bóng đá"
             }
+        }).attach()
 
-            override fun onFailure(call: Call<ArrayList<DanhMuc>>, t: Throwable) {
-
-            }
-
-        })
     }
-//    fun AppCompatActivity.replaceFragment(fragment: Fragment){
-//        supportFragmentManager.beginTransaction()
-//        .add(R.id.main_layout, fragment)
-//        .addToBackStack(null)
-//        .commit()
-//    }
+
 }
