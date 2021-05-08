@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tttkotlin.R
@@ -16,6 +17,7 @@ import com.example.tttkotlin.model.DanhMuc
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.activity_login_new.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header.*
 
@@ -92,7 +94,7 @@ class MainActivity : AppCompatActivity(){
                     Toast.makeText(applicationContext, "Đánh giá ứng dụng!", Toast.LENGTH_SHORT).show()
                     true
                 }
-                R.id.DX -> {
+                R.id.DKSD -> {
                     Toast.makeText(applicationContext, "Điều khoản sử dụng!", Toast.LENGTH_SHORT).show()
                     true
 

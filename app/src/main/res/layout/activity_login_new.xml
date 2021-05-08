@@ -80,9 +80,14 @@
         android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/bgHeader">
+        android:layout_below="@+id/bgHeader"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="2dp">
 
         <RelativeLayout
+            android:id="@+id/rLayoutDN"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -102,6 +107,7 @@
                     android:paddingBottom="50dp">
 
                     <TextView
+                        android:id="@+id/tvEmailDN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -119,6 +125,7 @@
                         android:inputType="text" />
 
                     <TextView
+                        android:id="@+id/tvPassDN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -134,19 +141,20 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:inputType="textPassword" />
+
                     <CheckBox
                         android:id="@+id/checkShowPass"
-                        android:textColor="@color/colorPurple"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/cv"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="2dp"
                         android:elevation="5dp"
                         android:text="Hiện mật khẩu"
-                        android:textSize="14sp" />
+                        android:textColor="@color/colorPurple"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -160,31 +168,34 @@
                 android:layout_marginTop="-50dp"
                 android:layout_marginRight="35dp"
                 android:elevation="10dp">
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvDNLogin"
                     android:layout_width="400dp"
                     android:layout_height="50dp"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/cvDNLogin"
                     app:cardBackgroundColor="#FF58C7"
-                    app:cardCornerRadius="50dp"
-                    >
+                    app:cardCornerRadius="50dp">
+
                     <RelativeLayout
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:background="@drawable/bg_ui">
+
                         <TextView
+                            android:id="@+id/tvDN"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvDN"
+                            android:layout_centerInParent="true"
                             android:text="Đăng nhập"
                             android:textColor="#fff"
-                            android:layout_centerInParent="true"
-                            android:textSize="20sp"/>
+                            android:textSize="20sp" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rLayoutAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/cv"
@@ -198,19 +209,19 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_ui"
-                    android:src="@drawable/ic_add_white"/>
+                    android:src="@drawable/ic_add_white" />
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tvDKTKNew"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="360dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="269dp"
-                android:text="Đăng ký tài khoản"
-                android:textColor="#651FFF"
-                android:textSize="16sp" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/tvDKTKNew"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="360dp"-->
+            <!--                android:layout_centerHorizontal="true"-->
+            <!--                android:layout_marginBottom="269dp"-->
+            <!--                android:text="Đăng ký tài khoản"-->
+            <!--                android:textColor="#651FFF"-->
+            <!--                android:textSize="16sp" />-->
         </RelativeLayout>
     </ScrollView>
 

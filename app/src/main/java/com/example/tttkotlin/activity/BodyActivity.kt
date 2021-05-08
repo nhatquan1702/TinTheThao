@@ -39,9 +39,8 @@ class BodyActivity : AppCompatActivity() {
         //ReadJSON().execute(url)
    //     Log.d("dfds", id_post.toString())
         id_post?.let{
-
+            //tangViewNew(it)
             loadBodyMauTin(it)
-
         }
 //        rtbDGBody.setOnRatingBarChangeListener(object : RatingBar.OnRatingBarChangeListener {
 //            override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
@@ -59,7 +58,23 @@ class BodyActivity : AppCompatActivity() {
 //            }
 //        })
     }
+    fun tangViewNew(id_post: String){
+
+    }
     fun loadBodyMauTin(id_post : String){
+        RetrofitInstance.instance.addView(id_post).enqueue(object : Callback<String>{
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                response.body()?.let{
+                    Toast.makeText(this@BodyActivity, it.get(0).toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Toast.makeText(this@BodyActivity, "Lỗi", Toast.LENGTH_SHORT).show()
+            }
+
+        })
         RetrofitInstance.instance.getMauTin(id_post).enqueue(object : Callback<ArrayList<MauTin>>{
             override fun onResponse(call: Call<ArrayList<MauTin>>, response: Response<ArrayList<MauTin>>) {
                 response.body()?.let {
@@ -67,7 +82,7 @@ class BodyActivity : AppCompatActivity() {
                     tvNoiDungBody.setText(it.get(0).getNoiDung())
                     tvNgayTaoBody.setText((it.get(0).getSoPhut()).substring(0, 16))
                     imgHinhAnhBody.load(it.get(0).getHinhAnh())
-                    //rtbDGBody.setRating(it.get(0).getDanhGia().toFloat());
+                    tvView.setText(it.get(0).getDanhGia().toInt().toString()+" lượt xem")
                     tvTacGiaBody.setText(it.get(0).getNguoiTao())
                     //shimmerFrame.apply {
 //                        stopShimmer()
@@ -82,6 +97,7 @@ class BodyActivity : AppCompatActivity() {
 
         })
     }
+
 
 //    override fun onResume() {
 //        super.onResume()

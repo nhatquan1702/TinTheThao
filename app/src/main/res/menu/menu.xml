@@ -32,14 +32,14 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
+                    android:title="Điều khoản sử dụng"
+                    android:icon="@drawable/right"
+                    android:id="@+id/DKSD"
+                    />
+                <item
                     android:title="Cài đặt"
                     android:icon="@drawable/right"
                     android:id="@+id/CD"
-                    />
-                <item
-                    android:title="Điều khoản sử dụng"
-                    android:icon="@drawable/right"
-                    android:id="@+id/DX"
                     />
             </group>
         </menu>

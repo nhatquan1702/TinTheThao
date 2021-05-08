@@ -9,7 +9,7 @@
     android:clipToPadding="false"
     app:edPosition="1"
     app:edMenuSize="240dp"
-    app:edMenuBackground="#0E66B9">
+    app:edMenuBackground="#8F5DFF">
 
     <!--main-->
     <LinearLayout
@@ -70,14 +70,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/nav_view"
-            android:background="#0E66B9"
+            android:background="@drawable/gradient_bg"
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header"
             app:menu="@menu/menu"
             app:itemBackground="@drawable/menu_item_padding"
-            app:itemIconTint="#fff"
+            app:itemIconTint="#000000"
             app:itemTextAppearance="@style/TextViewStyle"
-            app:itemHorizontalPadding="40dp">
+            app:itemHorizontalPadding="20dp">
         </com.google.android.material.navigation.NavigationView>
     </com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>
 

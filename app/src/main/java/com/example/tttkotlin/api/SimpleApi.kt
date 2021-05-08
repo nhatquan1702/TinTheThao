@@ -25,6 +25,6 @@ interface SimpleApi {
     @GET("login")
     fun userLogin(@Header ("email") user : String, @Header("password") pass : String) : Call<Login>
 
-    @POST("rate/{id}/{rating}")
-    fun danhGiaBaiViet(@Field("rating") soSao : Float) : Call<ArrayList<MauTin>>
+    @POST("view/{id}")
+    fun addView(@Path("id") id :String) : Call<String>
 }

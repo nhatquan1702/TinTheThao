@@ -19,6 +19,7 @@ import androidx.core.util.Pair.create
 import com.example.tttkotlin.R
 import com.example.tttkotlin.api.RetrofitInstance
 import com.example.tttkotlin.model.Login
+import kotlinx.android.synthetic.main.activity_dang_ky_t_k.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.checkShowPass
 import kotlinx.android.synthetic.main.activity_login.cvDNLogin
@@ -38,6 +39,16 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_new)
+        val animation = AnimationUtils.loadAnimation(this,R.anim.uptodowndiagonal)
+        rLayoutDN.setAnimation(animation)
+        val animationx = AnimationUtils.loadAnimation(this,R.anim.tranlation_x)
+        edtEmailLogin.setAnimation(animationx)
+        tvEmailDN.setAnimation(animationx)
+        edtPassLogin.setAnimation(animationx)
+        tvPassDN.setAnimation(animationx)
+        checkShowPass.setAnimation(animationx)
+        val animationy = AnimationUtils.loadAnimation(this,R.anim.tranlation_y)
+        rLayoutAdd.setAnimation(animationy)
         checkShowPass.setOnClickListener{
             if(checkShowPass.isChecked)    {
                 edtPassLogin.transformationMethod = HideReturnsTransformationMethod.getInstance()
@@ -107,10 +118,10 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, DangKyTKActivity::class.java)
             startActivity(intent)
         }
-        tvDKTKNew.setOnClickListener {
-            val intent = Intent(applicationContext, DangKyTKActivity::class.java)
-            startActivity(intent)
-        }
+//        tvDKTKNew.setOnClickListener {
+//            val intent = Intent(applicationContext, DangKyTKActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 

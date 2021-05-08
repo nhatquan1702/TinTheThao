@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.Toast
 import com.example.tttkotlin.R
 import com.example.tttkotlin.activity.BodyActivity
 import com.example.tttkotlin.model.MauTin
@@ -25,6 +26,7 @@ class BongChuyenFragment : Fragment() {
         savedInstanceState: Bundle?): View {
         viewBongChuyen  = inflater.inflate(R.layout.fragment_bong_chuyen, container, false)
         listMauTin = arrayListOf()
+
         loadListView()
         return viewBongChuyen
     }
@@ -33,6 +35,7 @@ class BongChuyenFragment : Fragment() {
         super.onResume()
         viewBongChuyen.shimmerFrame.startShimmer()
     }
+
     fun loadListView(){
         RetrofitInstance.instance.getListMauTin2().enqueue(object:Callback<ArrayList<MauTin>>{
             override fun onResponse(call: Call<ArrayList<MauTin>>, response: Response<ArrayList<MauTin>>) {
@@ -45,6 +48,7 @@ class BongChuyenFragment : Fragment() {
                             adapter = adapterMauTin
                             setOnItemClickListener { parent, view, position, id ->
                                 showChiTietPost(listMauTin.get(position).getIdMauTin().toString())
+
                             }
                         }
                         shimmerFrame.apply {
