@@ -22,7 +22,7 @@
         android:layout_marginLeft="10dp"
         android:background="@drawable/circle_bg"
         android:padding="2dp"
-        android:src="@drawable/deappool"
+        android:src="@drawable/ic_launcher_foreground"
         android:layout_centerVertical="true"
         android:id="@+id/imgAVT"
         />
@@ -34,7 +34,7 @@
         android:layout_toRightOf="@+id/imgAVT"
         android:layout_centerVertical="true"
         android:text="username"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:textColor="#fff"
         />
     <androidx.appcompat.widget.AppCompatButton
@@ -46,8 +46,8 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/imgAVT"
         android:text="Đăng nhập"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_ui"
+        android:textColor="@color/black"
+        android:background="@drawable/btn_dn_bg"
         android:textSize="9dp"
         />
 </RelativeLayout>

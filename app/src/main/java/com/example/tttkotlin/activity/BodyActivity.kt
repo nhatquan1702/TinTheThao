@@ -11,6 +11,7 @@ import coil.api.load
 import com.example.tttkotlin.R
 import com.example.tttkotlin.api.RetrofitInstance
 import com.example.tttkotlin.model.MauTin
+import com.example.tttkotlin.model.Status
 import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.android.synthetic.main.activity_body.*
 import org.json.JSONArray
@@ -39,7 +40,7 @@ class BodyActivity : AppCompatActivity() {
         //ReadJSON().execute(url)
    //     Log.d("dfds", id_post.toString())
         id_post?.let{
-            //tangViewNew(it)
+            tangViewNew(it)
             loadBodyMauTin(it)
         }
 //        rtbDGBody.setOnRatingBarChangeListener(object : RatingBar.OnRatingBarChangeListener {
@@ -59,22 +60,18 @@ class BodyActivity : AppCompatActivity() {
 //        })
     }
     fun tangViewNew(id_post: String){
-
-    }
-    fun loadBodyMauTin(id_post : String){
-        RetrofitInstance.instance.addView(id_post).enqueue(object : Callback<String>{
-
-            override fun onResponse(call: Call<String>, response: Response<String>) {
+        RetrofitInstance.instance.addView(id_post).enqueue(object : Callback<Status>{
+            override fun onResponse(call: Call<Status>, response: Response<Status>) {
                 response.body()?.let{
-                    Toast.makeText(this@BodyActivity, it.get(0).toString(), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(applicationContext,it.getStatus().toString(), Toast.LENGTH_SHORT).show()
                 }
             }
-
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Toast.makeText(this@BodyActivity, "Lỗi", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<Status>, t: Throwable) {
+                //Toast.makeText(applicationContext,t.message, Toast.LENGTH_SHORT).show()
             }
-
         })
+    }
+    fun loadBodyMauTin(id_post : String){
         RetrofitInstance.instance.getMauTin(id_post).enqueue(object : Callback<ArrayList<MauTin>>{
             override fun onResponse(call: Call<ArrayList<MauTin>>, response: Response<ArrayList<MauTin>>) {
                 response.body()?.let {

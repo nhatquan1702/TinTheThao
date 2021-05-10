@@ -41,7 +41,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="-80dp"
-        android:layout_marginBottom="-30dp"
+        android:layout_marginBottom="-50dp"
         android:src="@drawable/circle" />
 
     <ImageView
@@ -88,13 +88,29 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/edtNhapEmail"
+                        android:id="@+id/edtNhapEmailDK"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:inputType="textEmailAddress" />
+                    <TextView
+                        android:id="@+id/tvNhapUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Nhập tên người dùng"
+                        android:textColor="@color/colorPurple"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
+                    <EditText
+                        android:id="@+id/edtNhapUsernameDK"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:inputType="textEmailAddress" />
                     <TextView
                         android:id="@+id/tvNhapPass1"
                         android:layout_width="wrap_content"
@@ -131,7 +147,7 @@
                         android:layout_marginRight="10dp"
                         android:inputType="textPassword" />
                     <CheckBox
-                        android:id="@+id/checkShowPass"
+                        android:id="@+id/checkShowPassDK"
                         android:textColor="@color/colorPurple"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
@@ -160,7 +176,7 @@
                     android:layout_width="400dp"
                     android:layout_height="50dp"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/cvDNLogin"
+                    android:id="@+id/cvDKTK"
                     app:cardBackgroundColor="#FF58C7"
                     app:cardCornerRadius="50dp"
                     >

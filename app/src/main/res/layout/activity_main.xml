@@ -9,33 +9,35 @@
     android:clipToPadding="false"
     app:edPosition="1"
     app:edMenuSize="240dp"
-    app:edMenuBackground="#8F5DFF">
+    app:edMenuBackground="#7EAEFF">
 
     <!--main-->
     <LinearLayout
         android:id="@+id/linearHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#E8E8E8"
         android:orientation="vertical"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#651FFF">
+            android:background="#E8E8E8">
+
             <TextView
                 android:id="@+id/iconToolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_menu"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:drawableStart="@drawable/ic_baseline_vertical_split_24" />
             <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/iconToolbar"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="4dp"
                 android:layout_centerVertical="true"
                 android:iconifiedByDefault="false"
                 android:queryHint="Search"
@@ -45,19 +47,21 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginBottom="1dp"
-                android:background="@drawable/tab_bg"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/item_listview_bg"
                 app:tabBackground="@drawable/tab_selected_bg"
                 app:tabMode="scrollable"
-                app:tabRippleColor="@null">
+                app:tabIndicatorColor="#E8E8E8"
+                app:tabRippleColor="@color/white">
             </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="1dp" />
+            />
     </LinearLayout>
 
     <!--menu-->

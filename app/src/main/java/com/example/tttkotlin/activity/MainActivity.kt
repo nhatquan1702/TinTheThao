@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity(){
         val imgAVTHeader:ImageView = headerView.findViewById<View>(R.id.imgAVT) as ImageView
         var check = sharedPreferences.getString("token", "-1")
         if(!check.equals("-1")){//đã đăng nhập
-            navUsername.setText(sharedPreferences.getString("email", "username"))
+            //onBackPressed()
+            navUsername.setText(sharedPreferences.getString("username", "username"))
             btnLoginHeader.setText("Đăng xuất")
             btnLoginHeader.setOnClickListener {
                 val intent = Intent(applicationContext, MainActivity::class.java)
@@ -48,7 +49,9 @@ class MainActivity : AppCompatActivity(){
                 var editor = sharedPreferences.edit()
                 editor.apply {
                     editor.remove("email")
+                    editor.remove("pass")
                     editor.remove("token")
+                    editor.remove("username")
                 }.apply()
                 editor.commit()
                 Toast.makeText(applicationContext, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show()
@@ -57,7 +60,7 @@ class MainActivity : AppCompatActivity(){
          if(check.equals("-1")){//chưa đăng nhập
              navUsername.setText("username");
              btnLoginHeader.setText("Đăng nhập")
-             imgAVTHeader.setImageResource(R.drawable.ic_person)
+             imgAVTHeader.setImageResource(R.drawable.ic_launcher_foreground)
             btnLoginHeader.setOnClickListener {
                 val intent = Intent(applicationContext, LoginActivity::class.java)
                 startActivity(intent)
@@ -104,13 +107,15 @@ class MainActivity : AppCompatActivity(){
         }
     }
     fun loadTabLayout(){
-        val tabadapter = TabAdapter(this@MainActivity, mutableListOf(BongChuyenFragment(), BoiLoiFragment(), BongDaFragment()))
+        val tabadapter = TabAdapter(this@MainActivity, mutableListOf(BongChuyenFragment(), BoiLoiFragment(), BongDaFragment(), BongChuyenFragment(), BongChuyenFragment()))
         viewPager.adapter = tabadapter
         TabLayoutMediator(tabLayout,viewPager,{ tab,pos->
             when(pos){
                 0-> tab.text = "Bóng chuyền"
                 1->tab.text="Bơi lội"
                 2->tab.text="Bóng đá"
+                3->tab.text="Bóng chuyền"
+                4->tab.text="Bóng chuyền"
             }
         }).attach()
 

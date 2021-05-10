@@ -3,6 +3,7 @@ package com.example.tttkotlin.api
 import com.example.tttkotlin.model.DanhMuc
 import com.example.tttkotlin.model.Login
 import com.example.tttkotlin.model.MauTin
+import com.example.tttkotlin.model.Status
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -25,6 +26,9 @@ interface SimpleApi {
     @GET("login")
     fun userLogin(@Header ("email") user : String, @Header("password") pass : String) : Call<Login>
 
-    @POST("view/{id}")
-    fun addView(@Path("id") id :String) : Call<String>
+    @POST("post/view/{id}")
+    fun addView(@Path("id") id :String) : Call<Status>
+
+    @POST("account/reg")
+    fun dangKyTaiKhoan(@Header ("username") username : String, @Header ("email") email : String, @Header("password") pass : String) : Call<Status>
 }

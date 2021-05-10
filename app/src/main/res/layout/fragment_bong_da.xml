@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.BongDaFragment"
-    android:background="#fff">
+    android:background="#E8E8E8">
 
     <!-- TODO: Update blank fragment layout -->
     <com.facebook.shimmer.ShimmerFrameLayout
@@ -37,9 +37,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listViewMauTinBD"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp">
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp">
     </ListView>
 
 </FrameLayout>

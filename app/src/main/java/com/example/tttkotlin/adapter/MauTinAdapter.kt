@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import coil.api.load
+import coil.size.Scale
 import com.example.tttkotlin.R
 import com.example.tttkotlin.model.MauTin
 import java.text.DateFormat

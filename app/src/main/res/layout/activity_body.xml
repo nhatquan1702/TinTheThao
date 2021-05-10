@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp">
                 <LinearLayout
@@ -26,6 +26,7 @@
                         android:id="@+id/imgHinhAnhBody"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
                         android:background="@drawable/img_bg"
                         android:layout_marginTop="5dp"/>
                 </LinearLayout>
@@ -66,24 +67,25 @@
                     android:orientation="horizontal"
                     android:paddingBottom="20dp"
                     android:layout_marginTop="5sp">
+
                     <TextView
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvView"
+                        android:id="@+id/tvTacGiaBody"
                         android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
-                        android:drawableStart="@drawable/ic_view"
-                        android:paddingStart="5dp"
-                        android:text="20 lượt xem"
+                        android:drawableStart="@drawable/pen"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="italic"
                         />
                     <TextView
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvTacGiaBody"
-                        android:layout_width="wrap_content"
-                        android:drawableStart="@drawable/pen"
+                        android:id="@+id/tvView"
                         android:layout_marginLeft="80dp"
+                        android:layout_width="wrap_content"
+                        android:drawableStart="@drawable/ic_view"
+                        android:paddingStart="5dp"
+                        android:text="20 lượt xem"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="italic"

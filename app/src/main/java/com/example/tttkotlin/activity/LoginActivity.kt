@@ -71,7 +71,6 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
             RetrofitInstance.instance.userLogin(email, pass).enqueue(object : Callback<Login> {
                 override fun onResponse(call: Call<Login>, response: Response<Login>) {
                     val sharedPreferences: SharedPreferences = getSharedPreferences(
@@ -79,11 +78,12 @@ class LoginActivity : AppCompatActivity() {
                         Context.MODE_PRIVATE
                     )
                     var editor = sharedPreferences.edit()
-                    if (!response.body()?.getAccessToken().equals("")) {
+                    if (!response.body()?.getAccessToken().equals(null)) {
                         editor.apply {
                             putString("email", email)
                             putString("token", response.body()?.getAccessToken())
                             putString("pass", pass)
+                            putString("username", response.body()?.getUserName())
                         }.apply()
                         editor.commit()
                         Toast.makeText(
@@ -92,8 +92,8 @@ class LoginActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(applicationContext, MainActivity::class.java)
-                        //intent.putExtra("email_user", email)
                         startActivity(intent)
+                        onBackPressed()
                     } else {
                         Toast.makeText(
                             applicationContext,
