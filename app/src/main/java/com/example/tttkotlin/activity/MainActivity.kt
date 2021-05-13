@@ -9,22 +9,29 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tttkotlin.R
+import com.example.tttkotlin.SearchActivity
+import com.example.tttkotlin.adapter.MauTinAdapter
 import com.example.tttkotlin.adapter.TabAdapter
 import com.example.tttkotlin.fragment.BoiLoiFragment
 import com.example.tttkotlin.fragment.BongChuyenFragment
 import com.example.tttkotlin.fragment.BongDaFragment
 import com.example.tttkotlin.model.DanhMuc
+import com.example.tttkotlin.model.MauTin
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_login_new.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity(){
     lateinit var listDanhMuc : ArrayList<DanhMuc>
     lateinit var tabLayout : TabLayout
+    lateinit var listMauTin:ArrayList<MauTin>
+    lateinit var searchView: SearchView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,6 +50,7 @@ class MainActivity : AppCompatActivity(){
             //onBackPressed()
             navUsername.setText(sharedPreferences.getString("username", "username"))
             btnLoginHeader.setText("Đăng xuất")
+            imgAVTHeader.setImageResource(R.drawable.deappool)
             btnLoginHeader.setOnClickListener {
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)
@@ -67,7 +75,7 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
-
+        search()
         iconToolbar.setOnClickListener(View.OnClickListener {
             drawerlayout.toggleMenu()
         })
@@ -105,17 +113,31 @@ class MainActivity : AppCompatActivity(){
                 else -> false
             }
         }
+
+    }
+    fun search(){
+        searchView = findViewById(R.id.searchView)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                val intent = Intent(applicationContext, SearchActivity::class.java)
+                intent.putExtra("textSearch", query)
+                startActivity(intent)
+                return false
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                return false
+            }
+        })
     }
     fun loadTabLayout(){
-        val tabadapter = TabAdapter(this@MainActivity, mutableListOf(BongChuyenFragment(), BoiLoiFragment(), BongDaFragment(), BongChuyenFragment(), BongChuyenFragment()))
+        val tabadapter = TabAdapter(this@MainActivity, mutableListOf(BongChuyenFragment(), BoiLoiFragment(), BongDaFragment()))
         viewPager.adapter = tabadapter
         TabLayoutMediator(tabLayout,viewPager,{ tab,pos->
             when(pos){
                 0-> tab.text = "Bóng chuyền"
                 1->tab.text="Bơi lội"
                 2->tab.text="Bóng đá"
-                3->tab.text="Bóng chuyền"
-                4->tab.text="Bóng chuyền"
             }
         }).attach()
 

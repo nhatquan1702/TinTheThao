@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TTTKotlin">
-        <activity android:name=".activity.DangKyTKActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".activity.DangKyTKActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.BodyActivity" />
         <activity android:name=".activity.MainActivity">

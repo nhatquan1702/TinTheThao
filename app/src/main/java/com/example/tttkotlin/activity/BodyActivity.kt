@@ -38,9 +38,7 @@ class BodyActivity : AppCompatActivity() {
         val id_post : String? = intent.getStringExtra("id_post")
         //val a: String = "https://apisimpleappp.herokuapp.com/post/" + id_post
         //ReadJSON().execute(url)
-   //     Log.d("dfds", id_post.toString())
         id_post?.let{
-            tangViewNew(it)
             loadBodyMauTin(it)
         }
 //        rtbDGBody.setOnRatingBarChangeListener(object : RatingBar.OnRatingBarChangeListener {
@@ -59,18 +57,18 @@ class BodyActivity : AppCompatActivity() {
 //            }
 //        })
     }
-    fun tangViewNew(id_post: String){
-        RetrofitInstance.instance.addView(id_post).enqueue(object : Callback<Status>{
-            override fun onResponse(call: Call<Status>, response: Response<Status>) {
-                response.body()?.let{
-                    //Toast.makeText(applicationContext,it.getStatus().toString(), Toast.LENGTH_SHORT).show()
-                }
-            }
-            override fun onFailure(call: Call<Status>, t: Throwable) {
-                //Toast.makeText(applicationContext,t.message, Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
+//    fun tangViewNew(id_post: String){
+//        RetrofitInstance.instance.addView(id_post).enqueue(object : Callback<Status>{
+//            override fun onResponse(call: Call<Status>, response: Response<Status>) {
+//                response.body()?.let{
+//                    //Toast.makeText(applicationContext,it.getStatus().toString(), Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//            override fun onFailure(call: Call<Status>, t: Throwable) {
+//                //Toast.makeText(applicationContext,t.message, Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
     fun loadBodyMauTin(id_post : String){
         RetrofitInstance.instance.getMauTin(id_post).enqueue(object : Callback<ArrayList<MauTin>>{
             override fun onResponse(call: Call<ArrayList<MauTin>>, response: Response<ArrayList<MauTin>>) {
