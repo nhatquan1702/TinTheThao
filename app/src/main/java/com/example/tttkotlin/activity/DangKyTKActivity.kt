@@ -79,7 +79,7 @@ class DangKyTKActivity : AppCompatActivity(){
             }
             if(!pass1.equals(pass2) || !pass2.equals(pass1))
                 edtNhapPass2.error="Mật khẩu chưa trùng khớp!"
-            dangKyTaiKhoan(username, email, pass2)
+            dangKyTaiKhoan(username, email, pass1)
         }
 
     }
