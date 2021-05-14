@@ -68,7 +68,7 @@ class DangKyTKActivity : AppCompatActivity(){
                 return@setOnClickListener
             }
             if(!checkFormatPass(pass1)){
-                edtNhapPass1.error = "Mật khẩu không hợp lệ!"
+                edtNhapPass1.error = "Mật khẩu phải ít nhất 8 ký tự bao gồm chữ, ký tự đặc biệt và số!"
                 edtNhapPass1.requestFocus()
                 return@setOnClickListener
             }
@@ -79,7 +79,7 @@ class DangKyTKActivity : AppCompatActivity(){
             }
             if(!pass1.equals(pass2) || !pass2.equals(pass1))
                 edtNhapPass2.error="Mật khẩu chưa trùng khớp!"
-            dangKyTaiKhoan(username, email, pass1)
+            else dangKyTaiKhoan(username, email, pass1)
         }
 
     }

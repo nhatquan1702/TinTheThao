@@ -135,9 +135,9 @@ class MainActivity : AppCompatActivity(){
         viewPager.adapter = tabadapter
         TabLayoutMediator(tabLayout,viewPager,{ tab,pos->
             when(pos){
-                0-> tab.text = "Bóng chuyền"
+                0-> tab.text = "Bóng đá"
                 1->tab.text="Bơi lội"
-                2->tab.text="Bóng đá"
+                2->tab.text="Bóng bàn"
             }
         }).attach()
 
